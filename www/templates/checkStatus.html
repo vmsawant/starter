@@ -1,0 +1,18 @@
+<ion-view title="Check Status">
+<ion-content overflow-scroll="true" padding="true" class="has-header">
+  <div class="card">
+    <div class="item item-text-wrap">
+      <h1>Network: {{type}}</h1>
+    </div>
+  </div>
+  <p ng-model="status"></p>
+	<div class="card">
+    <div class="item item-text-wrap">
+    	<ion-toggle ng-model="isOnline" ng-checked="item.checked">
+    		<h1 ng-show="isOnline">I'm online</h1>
+    		<h1 ng-show="! isOnline">I'm offline</h1>
+    	</ion-toggle>
+  	</div>
+  </div>
+</ion-content>
+</ion-view>
