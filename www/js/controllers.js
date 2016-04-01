@@ -1,6 +1,6 @@
 angular.module('app.controllers', [])
 
-	.controller('loginCtrl', function($scope,$state,$ionicPopup) {
+	.controller('loginCtrl', function($scope,$state,$ionicPopup){
 			
 			$scope.login = function(username,password){
 				
@@ -31,7 +31,7 @@ angular.module('app.controllers', [])
 		})
 		
   //$scope.login = function(data.username,data.password){
-    /*userService.signIn(JSON.stringify(data)).then(function(response){
+    /*user.signIn(JSON.stringify(data)).then(function(response){
       console.log("cont resp : " + response.success);
       if(response.success == true){
         window.localStorage['email'] = response.email;
@@ -93,29 +93,47 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('checkStatusCtrl', function($rootScope, $cordovaNetwork) {
+.controller('checkStatusCtrl', function($scope,$cordovaNetwork,$rootScope) {
 
   document.addEventListener("deviceready", function () {
+    
 
-    var type = $cordovaNetwork.getNetwork()
-    console.log(type);
+    $scope.network = $cordovaNetwork.getNetwork();
+    console.log(network);
 
     var isOnline = $cordovaNetwork.isOnline()
      console.log(isOnline);
 
-    var isOffline = $cordovaNetwork.isOffline()
+     // listen for Online event
+        $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
+            $scope.isOnline = true;
+            $scope.network = $cordovaNetwork.getNetwork();
+            
+            $scope.$apply();
+        })
+
+        // listen for Offline event
+        $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+            console.log("got offline");
+            $scope.isOnline = false;
+            $scope.network = $cordovaNetwork.getNetwork();
+            
+            $scope.$apply();
+        })
+
+    /*var isOffline = $cordovaNetwork.isOffline()
      console.log(isOffline);
 
 
     // listen for Online event
     $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
-      var onlineState = networkState;
+      var isOnline = networkState;
     })
 
     // listen for Offline event
     $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
-      var offlineState = networkState;
-    })
+      var isOffline = networkState;
+    })*/
 
   }, false);
 })
@@ -173,7 +191,6 @@ angular.module('app.controllers', [])
 })
    
 .controller('welcomeCtrl', function($scope) {
-	
 
 })
  

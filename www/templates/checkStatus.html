@@ -2,17 +2,27 @@
 <ion-content overflow-scroll="true" padding="true" class="has-header">
   <div class="card">
     <div class="item item-text-wrap">
-      <h1>Network: {{type}}</h1>
+      <h1>Network: {{network}}</h1>
     </div>
   </div>
-  <p ng-model="status"></p>
-	<div class="card">
+  <div>Online state={{online}}</div>
+  
+
+  
+	<!--<div class="card">
     <div class="item item-text-wrap">
+      <h1 ng-show="isOnline" ng-model="isOnline">I am online</h1>
+      <h1 ng-show="! isOnline" ng-model="! isOnline">I am offline</h1>
     	<ion-toggle ng-model="isOnline" ng-checked="item.checked">
     		<h1 ng-show="isOnline">I'm online</h1>
     		<h1 ng-show="! isOnline">I'm offline</h1>
     	</ion-toggle>
   	</div>
-  </div>
+    <p>Online state: {{isOnline}}</p>
+    <p>Offline state: {{isOffline}}</p>
+    <p ng-model="isOnline" ng-show="isOnline" class="text-center" style="background-color:green">Online</p>
+    <p ng-model="isOnline" ng-show="! isOnline" class="text-center" style="background-color:red">Offline</p>
+
+  </div>-->
 </ion-content>
 </ion-view>
