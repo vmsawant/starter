@@ -59,7 +59,7 @@ angular.module('app.routes', [])
   })
 
   .state('menu.welcome', {
-    url: '/page8',
+    url: '/welcome',
     views: {
       'side-menu21': {
         templateUrl: 'templates/welcome.html',

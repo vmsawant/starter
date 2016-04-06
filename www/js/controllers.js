@@ -25,8 +25,7 @@ angular.module('app.controllers', [])
 					title:'Failure',
 					template:'Login failed'
 				});
-				
-			}
+			 }
 		 };
 		})
 		
@@ -93,16 +92,35 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('checkStatusCtrl', function($scope,$cordovaNetwork,$rootScope) {
+.controller('checkStatusCtrl', function($state,$scope,$cordovaNetwork,$rootScope,$ionicPopup,ConnectivityMonitor) {
+
+  $scope.type=$cordovaNetwork.getNetwork();
+  $scope.onlineStatus = ConnectivityMonitor.isOnline();
+  $scope.offlineStatus = ConnectivityMonitor.isOffline();
+  /*$scope.checkStatus = function(){
+    if(ConnectivityMonitor.isOnline() == true)
+    {
+      var deviceStatus = $ionicPopup.alert({
+        title:'Status',
+        template:'Device is online'
+      });
+    }
+    else
+    {
+      var deviceStatus = $ionicPopup.alert({
+        title:'Status',
+        template:'Device is offline'
+    });
+  };
 
   document.addEventListener("deviceready", function () {
     
 
     $scope.network = $cordovaNetwork.getNetwork();
     console.log(network);
-
-    var isOnline = $cordovaNetwork.isOnline()
+    $scope.isOnline = $cordovaNetwork.isOnline()
      console.log(isOnline);
+     $scope.apply();
 
      // listen for Online event
         $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
@@ -121,6 +139,15 @@ angular.module('app.controllers', [])
             $scope.$apply();
         })
 
+        if(isOffnline == true)
+        {
+          var status = $ionicPopup.alert({
+          title:'Message',
+          template:'You are offline'
+        });
+      }
+
+
     /*var isOffline = $cordovaNetwork.isOffline()
      console.log(isOffline);
 
@@ -135,7 +162,7 @@ angular.module('app.controllers', [])
       var isOffline = networkState;
     })*/
 
-  }, false);
+  //}, false)
 })
    
 /*.controller('checkStatusCtrl',function($scope,$cordovaNetwork,$rootScope) {

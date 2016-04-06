@@ -2,14 +2,16 @@
 <ion-content overflow-scroll="true" padding="true" class="has-header">
   <div class="card">
     <div class="item item-text-wrap">
-      <h1>Network: {{network}}</h1>
+      <h1 ng-model="network">Network: {{type}}</h1>
     </div>
   </div>
-  <div>Online state={{online}}</div>
+  <div>Online state={{onlineStatus}}</div>
+  <div>Offline state={{offlineStatus}}</div>
+ <!-- <div ng-show="! isOnline">Offline state</div>
   
 
   
-	<!--<div class="card">
+	<!<div class="card">
     <div class="item item-text-wrap">
       <h1 ng-show="isOnline" ng-model="isOnline">I am online</h1>
       <h1 ng-show="! isOnline" ng-model="! isOnline">I am offline</h1>
