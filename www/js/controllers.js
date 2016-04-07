@@ -1,5 +1,9 @@
 angular.module('app.controllers', [])
 
+  .controller('appCtrl', function($scope,ConnectivityMonitor){
+    ConnectivityMonitor.startWatching();
+  })
+
 	.controller('loginCtrl', function($scope,$state,$ionicPopup){
 			
 			$scope.login = function(username,password){
@@ -88,20 +92,14 @@ angular.module('app.controllers', [])
 
 
   
-.controller('profileCtrl', function($scope,ConnectivityMonitor) {
-  ConnectivityMonitor.startWatching();
+.controller('profileCtrl', function($scope) {
+  //ConnectivityMonitor.startWatching();
 
 })
 
-.controller('checkStatusCtrl', function($scope,$cordovaNetwork,$rootScope,ConnectivityMonitor) {
+.controller('checkStatusCtrl', function($scope,$cordovaNetwork,$rootScope) {
 
-  var networkType = $cordovaNetwork.getNetwork();
-  var onlineStatus = ConnectivityMonitor.isOnline();
-  var offlineStatus = ConnectivityMonitor.isOffline();
-  console.log(networkType);
-  console.log(onlineStatus);
-  console.log(offlineStatus);
-  ConnectivityMonitor.startWatching();
+  
 
  
   /*$rootScope.$on('$cordovaNetwork:online', function(event, networkState){
@@ -240,7 +238,7 @@ angular.module('app.controllers', [])
 })
 
 .controller('signupCtrl', function($scope,$state,$ionicPopup) {
-    $scope.signup = function(data){
+      $scope.signup = function(data){
       if(data.password == data.password_confirmation){
             var alertmsg = $ionicPopup.alert({
             title:'Success',
@@ -282,9 +280,7 @@ angular.module('app.controllers', [])
     }
   };*/
 
-
-   
-.controller('welcomeCtrl', function($scope,ConnectivityMonitor) {
-  ConnectivityMonitor.startWatching();
+.controller('welcomeCtrl', function($scope) {
+  //ConnectivityMonitor.startWatching();
 })
  
