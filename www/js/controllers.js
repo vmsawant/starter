@@ -88,7 +88,8 @@ angular.module('app.controllers', [])
 
 
   
-.controller('profileCtrl', function($scope) {
+.controller('profileCtrl', function($scope,ConnectivityMonitor) {
+  ConnectivityMonitor.startWatching();
 
 })
 
@@ -283,7 +284,7 @@ angular.module('app.controllers', [])
 
 
    
-.controller('welcomeCtrl', function($scope) {
-
+.controller('welcomeCtrl', function($scope,ConnectivityMonitor) {
+  ConnectivityMonitor.startWatching();
 })
  

@@ -22,18 +22,17 @@ angular.module('app.connection', [])
  
           $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
             console.log("went online");
-            console.log("went offline");
             var alertMsg = $ionicPopup.alert({
-            	title:'',
-            	template:'You are online!'
+            	title:'Online',
+            	template:'Internet connectivity regained!'
             });
 					});
  
           $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
             console.log("went offline");
             var alertMsg = $ionicPopup.alert({
-            	title:'Error',
-            	template:'Oops!you are offline'
+            	title:'Offline',
+            	template:'Oops!no internet connectivity'
             });
           });
  
@@ -42,10 +41,19 @@ angular.module('app.connection', [])
  
           window.addEventListener("online", function(e) {
             console.log("went online");
+            var alertMsg = $ionicPopup.alert({
+            	title:'Online',
+            	template:'Internet connectivity regained!'
+            });
           }, false);    
  
           window.addEventListener("offline", function(e) {
             console.log("went offline");
+            var alertMsg = $ionicPopup.alert({
+            	title:'Offline',
+            	template:'Oops!no internet connectivity'
+            });
+
           }, false);  
         }       
     }
