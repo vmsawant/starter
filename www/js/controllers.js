@@ -92,11 +92,38 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('checkStatusCtrl', function($state,$scope,$cordovaNetwork,$rootScope,$ionicPopup,ConnectivityMonitor) {
+.controller('checkStatusCtrl', function($scope,$cordovaNetwork,$rootScope,ConnectivityMonitor) {
 
-  $scope.type=$cordovaNetwork.getNetwork();
-  $scope.onlineStatus = ConnectivityMonitor.isOnline();
-  $scope.offlineStatus = ConnectivityMonitor.isOffline();
+  var networkType = $cordovaNetwork.getNetwork();
+  var onlineStatus = ConnectivityMonitor.isOnline();
+  var offlineStatus = ConnectivityMonitor.isOffline();
+  console.log(networkType);
+  console.log(onlineStatus);
+  console.log(offlineStatus);
+  ConnectivityMonitor.startWatching();
+
+ 
+  /*$rootScope.$on('$cordovaNetwork:online', function(event, networkState){
+            $scope.isOnline = true;
+            $scope.network = $cordovaNetwork.getNetwork();
+            console.log(networkState);
+            $scope.status="I am online";
+            $scope.$apply();
+  })
+
+  // listen for Offline event
+  $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+            console.log("got offline");
+            $scope.isOnline = false;
+            $scope.network = $cordovaNetwork.getNetwork();
+            console.log(networkState);
+            $scope.status="I am offline";
+            $scope.$apply();
+  })*/
+
+
+
+
   /*$scope.checkStatus = function(){
     if(ConnectivityMonitor.isOnline() == true)
     {
@@ -211,11 +238,50 @@ angular.module('app.controllers', [])
     };
 })
 
+.controller('signupCtrl', function($scope,$state,$ionicPopup) {
+    $scope.signup = function(data){
+      if(data.password == data.password_confirmation){
+            var alertmsg = $ionicPopup.alert({
+            title:'Success',
+            template:'Registered Successfully!'
+          });
+          $state.go('login');
+        }
+        else{
+          var alertmsg = $ionicPopup.alert({
+            title:'Error',
+            template:'Password Mismatch'
+          });
+        }
+      };
+  })
 
-      
-.controller('signupCtrl', function($scope) {
+  /*$scope.signup = function(data){
+    if(data.password == data.password_confirmation){
+      registration.newUser(data).then(function(response){
+        if(response.success == true){
+          window.localStorage.clear();
+          var alertPopup = $ionicPopup.alert({
+            title: 'Success',
+            template:'Registered Successfully!'
+          });
+          $state.go('login');
+        }else{
+          var alertPopup = $ionicPopup.alert({
+            title: 'Error!',
+            template: 'Something went wrong!'
+          });
+        }
+      });
+    }else{
+      var alertPopup = $ionicPopup.alert({
+        title: 'Password Error!',
+        template: "Password Mismatch"
+      });
+    }
+  };*/
 
-})
+
    
 .controller('welcomeCtrl', function($scope) {
 

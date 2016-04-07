@@ -56,7 +56,7 @@ angular.module('app.services', [])
     },
     isOffline: function(){
       if(ionic.Platform.isWebView()){
-        return !$cordovaNetwork.isOnline();    
+        return $cordovaNetwork.isOffline();    
       } else {
         return !navigator.onLine;
       }
@@ -86,6 +86,34 @@ angular.module('app.services', [])
     }
   }
 })
+
+/*.factory('registration',function($http, RESOURCES){
+  return{
+   
+    newUser: function(data){
+      var promise = $http({
+        url: RESOURCES.API_URL+"signup/new_entity.json",
+        method: "GET"
+      }).then(function(response){
+        return response.data;
+      });
+      return promise;
+    },
+    saveNewData: function(data){
+      var entity = window.localStorage["regi"];
+      var promise = $http({
+        url: RESOURCES.API_URL+"signup/save_new.json",
+        method: "POST",
+        data: {userinfo: data, entity: entity}
+      }).then(function(response){
+        return response.data;
+      });
+      return promise;
+    }
+  }
+})*/
+
+
 
 
 
