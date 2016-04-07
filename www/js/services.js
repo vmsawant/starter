@@ -56,7 +56,7 @@ angular.module('app.services', [])
     },
     isOffline: function(){
       if(ionic.Platform.isWebView()){
-        return $cordovaNetwork.isOffline();    
+        return !$cordovaNetwork.isOnline();    
       } else {
         return !navigator.onLine;
       }

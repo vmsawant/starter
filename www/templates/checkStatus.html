@@ -4,19 +4,11 @@
     <div class="item item-text-wrap">
       <h1 ng-model="networkType">Network: {{networkType}}</h1>
     </div>
+    <div>Online state : {{onlineStatus}}</div>
+    <div>Offline state : {{offlineStatus}}</div>
   </div>
-  <div>Online state : {{onlineStatus}}</div>
-  <div>Offline state : {{offlineStatus}}</div>
-
-  <div>Rootscope Online state={{isOnline}}</div>
-  <div>Rootscope Offline state={{isOffline}}</div>
-  <h1 ng-model="network">Network: {{network}}</h1>
-
- <!-- <div ng-show="! isOnline">Offline state</div>
-  
-
-  
-	<!<div class="card">
+  <!-- <div ng-show="! isOnline">Offline state</div>
+  <!<div class="card">
     <div class="item item-text-wrap">
       <h1 ng-show="isOnline" ng-model="isOnline">I am online</h1>
       <h1 ng-show="! isOnline" ng-model="! isOnline">I am offline</h1>
@@ -29,7 +21,6 @@
     <p>Offline state: {{isOffline}}</p>
     <p ng-model="isOnline" ng-show="isOnline" class="text-center" style="background-color:green">Online</p>
     <p ng-model="isOnline" ng-show="! isOnline" class="text-center" style="background-color:red">Offline</p>
-
   </div>-->
 </ion-content>
 </ion-view>
