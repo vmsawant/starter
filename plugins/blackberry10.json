@@ -30,7 +30,20 @@
         },
         "cordova-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.starter746431"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.ionicframework.starter746431"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "com.ionicframework.starter746431"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-bb-utils": {
+            "PACKAGE_NAME": "com.ionicframework.starter746431"
+        },
+        "cordova-plugin-bb-pimlib": {
+            "PACKAGE_NAME": "com.ionicframework.starter746431"
+        }
+    }
 }

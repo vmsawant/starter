@@ -22,14 +22,18 @@ angular.module('app.connection', [])
  
           $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
             console.log("went online");
-            var alertMsg = $ionicPopup.alert({
+            window.localStorage.setItem("status","online");
+            console.log(window.localStorage.getItem("status"));
+              var alertMsg = $ionicPopup.alert({
             	title:'Online',
-            	template:'Internet connectivity regained!'
+            	template:'Connected to the internet!'
             });
 					});
  
           $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
             console.log("went offline");
+            window.localStorage.setItem("status","offline");
+            console.log(window.localStorage.getItem("status"));
             var alertMsg = $ionicPopup.alert({
             	title:'Offline',
             	template:'Oops!no internet connectivity'
@@ -41,6 +45,8 @@ angular.module('app.connection', [])
  
           window.addEventListener("online", function(e) {
             console.log("went online");
+            window.localStorage.setItem("status","online");
+            console.log(window.localStorage.getItem("status"));
             var alertMsg = $ionicPopup.alert({
             	title:'Online',
             	template:'Internet connectivity regained!'
@@ -49,6 +55,8 @@ angular.module('app.connection', [])
  
           window.addEventListener("offline", function(e) {
             console.log("went offline");
+            window.localStorage.setItem("status","offline");
+            console.log(window.localStorage.getItem("status"));
             var alertMsg = $ionicPopup.alert({
             	title:'Offline',
             	template:'Oops!no internet connectivity'

@@ -62,5 +62,37 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-geolocation": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-geolocation@~2.1.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-contacts": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-contacts@~2.0.1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-bb-utils": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-bb-utils"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-plugin-bb-pimlib": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-bb-pimlib"
+        },
+        "is_top_level": false,
+        "variables": {}
     }
 }

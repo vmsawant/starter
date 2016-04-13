@@ -87,18 +87,37 @@ angular.module('app.controllers', [])
     });
   };*/
 
-
-	
-
-
-  
 .controller('profileCtrl', function($scope) {
   //ConnectivityMonitor.startWatching();
 
 })
 
-.controller('checkStatusCtrl', function($scope,$cordovaNetwork,$rootScope) {
+.controller('checkStatusCtrl', function($scope) {
+  console.log(window.localStorage.getItem("status"));
+  $scope.status = window.localStorage.getItem("status");
+  $scope.$apply("status");
+  
+  
+  /*var options = {timeout: 10000, enableHighAccuracy: true};
+  $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    var mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
 
+    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    google.maps.event.addListenerOnce($scope.map, 'idle', function(){
+      var marker = new google.maps.Marker({
+        map: $scope.map,
+        animation: google.maps.Animation.DROP,
+        position: latLng
+      });      
+    });
+  }, function(error){
+    console.log("Could not get location");
+  });   
   
 
  
@@ -283,4 +302,48 @@ angular.module('app.controllers', [])
 .controller('welcomeCtrl', function($scope) {
   //ConnectivityMonitor.startWatching();
 })
+
+.controller('contactsCtrl', function($scope, $cordovaContacts, $ionicPlatform) {
+  $scope.addContact = function() {
+    $cordovaContacts.save($scope.contactForm).then(function(result) {
+      // Contact saved
+    }, function(err) {
+      // Contact error
+    });
+  };
+
+  $scope.getAllContacts = function() {
+    $cordovaContacts.find().then(function(allContacts) { //omitting parameter to .find() causes all contacts to be returned
+      $scope.contacts = allContacts;
+    });
+  };
+
+  $scope.findContactsBySearchTerm = function (searchTerm) {
+    var opts = {                                           //search options
+      filter : searchTerm,                                 // 'Bob'
+      multiple: true,                                      // Yes, return any contact that matches criteria
+      fields:  [ 'displayName', 'name' ],                   // These are the fields to search for 'bob'.
+      desiredFields: [id] 
+         //return fields.
+    };
+
+    if ($ionicPlatform.isAndroid()) {
+      opts.hasPhoneNumber = true;         //hasPhoneNumber only works for android.
+    };
+
+    $cordovaContacts.find(opts).then(function (contactsFound) {
+      $scope.contacts = contactsFound;
+    });
+  };
+
+  $scope.pickContactUsingNativeUI = function () {
+    $cordovaContacts.pickContact().then(function (contactPicked) {
+      $scope.contact = contactPicked;
+    });
+  };
+
+})
+
+
+
  

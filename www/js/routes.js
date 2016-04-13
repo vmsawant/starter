@@ -30,6 +30,16 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('menu.contacts', {
+    url: '/contacts',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/contacts.html',
+        controller: 'contactsCtrl'
+      }
+    }
+  })
+
   .state('menu.uploadPhotograph', {
     url: '/upload',
     views: {
