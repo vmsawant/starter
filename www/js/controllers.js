@@ -94,8 +94,9 @@ angular.module('app.controllers', [])
 
 .controller('checkStatusCtrl', function($scope) {
   console.log(window.localStorage.getItem("status"));
+  //$scope.status = window.localStorage.getItem("status");
   $scope.status = window.localStorage.getItem("status");
-  $scope.$apply("status");
+  //$scope.$apply();
   
   
   /*var options = {timeout: 10000, enableHighAccuracy: true};
@@ -304,7 +305,27 @@ angular.module('app.controllers', [])
 })
 
 .controller('contactsCtrl', function($scope, $cordovaContacts, $ionicPlatform) {
-  $scope.addContact = function() {
+  $scope.getContacts = function() {
+    $scope.phoneContacts = [];
+
+    function onSuccess(contacts) {
+      for (var i = 0; i < contacts.length; i++) {
+        var contact = contacts[i];
+        $scope.phoneContacts.push(contact);
+      }
+    };
+
+    function onError(contactError) {
+      alert(contactError);
+    };
+
+    var options = {};
+    options.multiple = true;
+
+    $cordovaContacts.find(options).then(onSuccess, onError);
+  };
+
+  /*$scope.addContact = function() {
     $cordovaContacts.save($scope.contactForm).then(function(result) {
       // Contact saved
     }, function(err) {
@@ -340,7 +361,7 @@ angular.module('app.controllers', [])
     $cordovaContacts.pickContact().then(function (contactPicked) {
       $scope.contact = contactPicked;
     });
-  };
+  };*/
 
 })
 
